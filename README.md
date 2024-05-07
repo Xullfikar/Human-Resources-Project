@@ -40,7 +40,21 @@ Sumber data: Supabase URL = postgresql://postgres.jyqrgkrhrxennxlqywpl:human_res
 Setup environment:
 
 ```
-pip install pandas numpy matplotlib jupyter sqlalchemy scikit-learn imbalanced-learn joblib
+docker pull metabase/metabase:v0.46.4
+
+docker run -p 3000:3000 --name metabase metabase/metabase
+
+mkdir human_resources
+
+cd human_resources
+
+pipenv install
+
+pipenv shell
+
+pip install numpy pandas scipy matplotlib seaborn jupyter sqlalchemy scikit-learn joblib
+
+jupyter-notebook .
 ```
 
 ## Business Dashboard
@@ -75,5 +89,19 @@ Perusahaan jaya jaya maju memiliki 1470 karyawan dimana sebanyak 12% karyawan ke
 
 ### Rekomendasi Action Items (Optional)
 
-- Untuk mengurangi attrition rate, manajer departemen HR dapat memprioritaskan pengecekan dan perbaikan pada faktor penyebab attrition terbesar
-- Manajer departemen HR dapat menggunakan model predict untuk memprediksi kemungkinan karyawan akan keluar atau menetap berdasarkan faktor penyebab attrition terbesar
+- Untuk mengurangi attrition rate, manajer departemen HR dapat memprioritaskan pengecekan dan perbaikan pada faktor penyebab attrition terbesar mulai dari memberikan tarif perjam, tarif harian, dan tarif bulanan yang sesuai dengan apa yang telah dikerjakan karyawan agar karyawan dapat bertahan
+- manajer departemen HR memberikan program Education bagi karyawan yang Berusia produktif agar karyawan dapat berkembang bersama dengan perusahaan dan juga karyawan dapat dipromosikan setelah bertahun tahun lamanya bekerja  
+- Manajer departemen HR dapat menggunakan model predict untuk memprediksi kemungkinan karyawan akan keluar atau menetap berdasarkan faktor penyebab attrition terbesar yaitu MonthlyIncome, Age, MonthlyRate, DailyRate, TotalWorkingYears, HourlyRate, dan DistanceFromHome.
+
+### Cara Menggunakan Model Machine Learning
+
+1. Jalankan file predict_model.py pada terminal dengan command berikut:
+```
+python predict_model.py
+```
+2. Masukkan data data karyawan berupa MonthlyIncome, Age, MonthlyRate, DailyRate, TotalWorkingYears, HourlyRate, dan DistanceFromHome, Pada inputan yang disediakan dalam bentuk angka(int) lalu tekan enter setiap kali data telah dimasukkan.
+3. Setelah semua data telah dimasukkan dan ditekan enter maka akan muncul hasil prediksi:
+```
+Prediction Attrition: Yes 1 atau No 0
+```
+ 
